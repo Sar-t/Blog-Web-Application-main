@@ -1,12 +1,50 @@
-# React + Vite
+# Blogging Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern blogging platform built with **React** and powered by **Appwrite** as the backend-as-a-service (BaaS).  
+This project allows users to create, read, update, and delete blog posts with secure authentication and real-time database updates.
 
-Currently, two official plugins are available:
+## Features
+- User authentication and account management (Appwrite Auth).
+- Create, edit, and delete blog posts.
+- Rich text editor for writing blogs.
+- Store and fetch blog posts from Appwrite Database.
+- Upload and manage images/files with Appwrite Storage.
+- Responsive UI built with React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend:** React, HTML, CSS, JavaScript
+- **Backend Services (BaaS):** Appwrite (Auth, Database, Storage)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation & Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/username/blogging-website.git
+   cd blogging-website
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure Appwrite:
+   - Set up a project in Appwrite console.
+   - Enable Authentication, Database, and Storage services.
+   - Add environment variables for Appwrite project ID, endpoint, and keys.
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+- Sign up / log in with Appwrite authentication.
+- Create and manage blog posts in the dashboard.
+- View blogs in a clean, responsive interface.
+
+## Future Improvements
+- Add comment system for posts.
+- Implement categories & tags.
+- Add profile pages for authors.
+
