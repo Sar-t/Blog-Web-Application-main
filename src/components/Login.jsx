@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice.js";
 import { Button, Input, Logo } from "../components/Index.js";
 import { useDispatch, useSelector } from "react-redux";
-import authService from "../appwrite/auth.js";
 import { useForm } from "react-hook-form";
 
 function Login() {
@@ -27,12 +26,14 @@ function Login() {
     setError("");
     try {
       setLoading(true);
-      const response = await fetch('/api/v1/users/login',{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/login`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: 'include',
         body: JSON.stringify(data),
+        
       });
       const result = await response.json();
 
@@ -42,16 +43,15 @@ function Login() {
         return;
       }
 
-      const userDataResponse = await fetch("/api/v1/users/me");
+      const userDataResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/me`, {
+        credentials: "include",
+      });
       const userData = await userDataResponse.json();
-
+      console.log("Fetched user data after login:", userData);
       dispatch(authLogin({userData}));
 
       setLoading(false);
       navigate("/");
-
-      
-      
     } catch (error) {
       setError(error.message);
     }

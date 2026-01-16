@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import authService from "../appwrite/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { Button, Logo, Input } from "../components/Index";
@@ -16,11 +15,12 @@ function SignUp() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch('/api/v1/users/register',{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/register`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: "include",
         body: JSON.stringify(data)
       });
       const result = await response.json();
@@ -30,7 +30,9 @@ function SignUp() {
         setLoading(false);
         return;
       }
-      const userDataResponse = await fetch("/api/v1/users/me");
+      const userDataResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/me`, {
+        credentials: "include",
+      });
       const userData = await userDataResponse.json();
       
       dispatch(login({userData}));

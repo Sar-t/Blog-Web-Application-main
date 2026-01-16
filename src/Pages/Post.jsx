@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import service from "../appwrite/config";
 import { Button, Container } from "../components/Index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
@@ -19,7 +18,7 @@ export default function Post() {
     if (id !== null && id !== undefined) {
       console.log("Fetching post with ID:", id);
       const fetchPost = async ()=>{
-        const response = await fetch(`/api/v1/blogs/${id}`,{
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/${id}`,{
           credentials: 'include',
         })
         const jsonData = await response.json();
@@ -53,7 +52,7 @@ export default function Post() {
     const confirmDelete = window.confirm("Are you sure you want to delete this post?");
     if(confirmDelete){
       const deletePostAsync = async ()=>{
-        const response = await fetch(`/api/v1/blogs/${id}`,{
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/${id}`,{
           method: 'DELETE',
           credentials: 'include',
         })

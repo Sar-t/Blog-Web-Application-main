@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import {useDispatch} from 'react-redux'
-import authService from './appwrite/auth.js'
 import './App.css'
 import { Footer, Header } from './components/Index.js'
 import { login, logout } from './store/authSlice.js'
@@ -16,7 +15,7 @@ function App() {
   useEffect(() => {
   const fetchCurrentUser = async () => {
     try {
-      const profile = await fetch("/api/v1/users/me", {
+      const profile = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/me`, {
         method: "GET",
         credentials: "include",
       });

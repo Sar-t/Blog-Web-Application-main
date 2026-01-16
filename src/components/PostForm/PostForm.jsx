@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "../Index";
-import service from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -41,7 +40,7 @@ export default function PostForm({ post }) {
     if (post) {
       // console.log("Updating post:", data);
         // console.log("File uploaded:", file);
-      const response = await fetch(`/api/v1/blogs/${post._id}`,{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/${post._id}`,{
         method: 'PATCH',
         body: formData,
         credentials: 'include'
@@ -54,7 +53,7 @@ export default function PostForm({ post }) {
         navigate(`/post/${jsonData.data._id}`)
       }
     } else {
-      const response = await fetch('/api/v1/blogs/',{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/`,{
         method: 'POST',
         body: formData,
         credentials: 'include'

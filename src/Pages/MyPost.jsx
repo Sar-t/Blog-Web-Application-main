@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import service from '../appwrite/config';
-import authService from '../appwrite/auth';
 import { useSelector } from 'react-redux';
 import { Container, Postcard } from '../components/Index';
-import { Query } from 'appwrite';
 
 function MyPost() {
     const [myPosts, setMyPosts] = useState([]);
     const userData = useSelector(state => state.auth.userData);
     useEffect(() => {
         const fetchMyPosts = async ()=>{
-            const response = await fetch('/api/v1/blogs/me/posts',{
-                credentials: 'include',
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/me/posts`,{
+                credentials: "include",
             })
             const jsonData = await response.json();
             if(response.ok){

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import service from '../appwrite/config';
 import { Container, Postcard } from '../components/Index';
 
 function Home() {
@@ -7,7 +6,7 @@ function Home() {
 
   useEffect(()=>{
     const fetchAllPosts = async ()=>{
-      const response = await fetch('/api/v1/blogs/');
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/`);
       const jsonData = await response.json();
       console.log(jsonData);
       setPosts(jsonData.data);

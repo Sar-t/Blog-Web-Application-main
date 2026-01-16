@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Container, PostForm} from '../components/Index'
 import { useNavigate, useParams } from 'react-router-dom';
-import service from '../appwrite/config';
+
 // This component is used to edit a post. It fetches the post data based on the slug from the URL parameters.
 function EditPost() {
     const [post,setPost] = useState(null);  //[] empty array is a truthy value, so we use null to indicate no post is loaded yet.
@@ -12,7 +12,7 @@ function EditPost() {
         console.log("useEffect triggered, slug:", id);
         if(id){
             const fetchPost = async ()=>{
-                const response = await fetch(`/api/v1/blogs/${id}`)
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/${id}`)
                 const jsonData = await response.json();
                 console.log("FETCH STATUS:", response.status);
                 console.log("FETCH DATA:", jsonData);

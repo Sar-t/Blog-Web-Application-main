@@ -1,15 +1,15 @@
 import React from 'react'
 import {logout} from '../../store/authSlice'
 import { useDispatch } from 'react-redux'
-import authService from '../../appwrite/auth';
 function LogoutBtn() {
     const dispatch = useDispatch();
     const logoutHandler = async () => {
       // authService.logout().then(()=>{ //once the session is deleted, we can dispatch the logout action
       //     dispatch(logout())
       // })
-      const result = await fetch('/api/v1/users/logout',{
+      const result = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/users/logout`,{
         method: 'POST',
+        credentials: 'include',
       });
       const resultJson = await result.json();
       if(result.ok){

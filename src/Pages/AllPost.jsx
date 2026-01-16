@@ -1,13 +1,12 @@
 //To display all post
 import React,{useState, useEffect} from 'react'
-import service from '../appwrite/config'
 import { Container } from '../components/Index'
 import Postcard from '../components/Postcard';
 function AllPost() {
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
         const fetchPosts = async ()=>{
-            const response = await fetch('/api/v1/blogs/',{
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/`,{
                 credentials: 'include',
             })
             const jsonData = await response.json();
